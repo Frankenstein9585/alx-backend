@@ -46,12 +46,13 @@ class Server:
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """This is an implementation of hypermedia pagination"""
         dataset_size = len(self.dataset())
+        page_length = len(self.get_page(page, page_size))
         next_page = None if page * page_size >= dataset_size else page + 1
         prev_page = None if page == 1 else page - 1
         total_pages = math.ceil(dataset_size / page_size)
         print(dataset_size)
         return {
-            'page_size': page_size,
+            'page_size': page_length,
             'page': page,
             'data': self.get_page(page, page_size),
             'next_page': next_page,
