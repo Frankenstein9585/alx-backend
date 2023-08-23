@@ -12,7 +12,7 @@ class FIFOCache(BaseCaching):
         super().__init__()
 
     def put(self, key, item):
-        """Adds an item to the dictionary"""
+        """Adds an item to the dictionary based on FIFO algorithm"""
         if key and item:
             self.cache_data[key] = item
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
