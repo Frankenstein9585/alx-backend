@@ -7,6 +7,7 @@ from collections import OrderedDict
 
 class LRUCache(BaseCaching):
     """LRUCache Class inherits from BaseCaching"""
+
     def __init__(self):
         """Initialize"""
         super().__init__()
@@ -30,7 +31,6 @@ class LRUCache(BaseCaching):
 
             # move the most recent key to the end of the dict
             self.cache.move_to_end(key)
-            print(self.cache)
 
     def get(self, key):
         """Retrieves an item from the dictionary"""
@@ -38,5 +38,4 @@ class LRUCache(BaseCaching):
             # move key to the end only if it exists in the dict
             if key in self.cache:
                 self.cache.move_to_end(key)
-            print(self.cache)
             return self.cache_data.get(key)
