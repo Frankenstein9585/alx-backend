@@ -11,8 +11,8 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config:
-    """Config class"""
+class Config(object):
+    """Config class for Babel"""
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -31,7 +31,7 @@ users = {
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str | Locale:
     """get_locale() method"""
     locale = request.args.get('locale')
     if locale and locale in SUPPORTED_LOCALES:
@@ -41,7 +41,7 @@ def get_locale():
 
 def get_user() -> Dict | None:
     """Returns a user dictionary if user ID is found"""
-    user_id = request.args.get('login_as', None)
+    user_id = request.args.get('login_as')
     if not user_id:
         return None
     return users.get(int(user_id))
@@ -54,7 +54,7 @@ def before_request():
 
 
 @app.route('/')
-def index():
+def index() -> str:
     """Index Route"""
     return render_template('5-index.html')
 
