@@ -41,7 +41,7 @@ def get_locale():
 
 def get_user() -> Dict | None:
     """Returns a user dictionary if user ID is found"""
-    user_id = request.args.get('login_as')
+    user_id = request.args.get('login_as', None)
     if not user_id:
         return None
     return users.get(int(user_id))
