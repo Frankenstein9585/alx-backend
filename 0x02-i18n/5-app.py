@@ -4,7 +4,7 @@ from typing import Dict
 
 from babel import Locale
 from flask import Flask, render_template, request, g
-from flask_babel import Babel, gettext
+from flask_babel import Babel
 
 app = Flask(__name__)
 
@@ -31,11 +31,11 @@ users = {
 
 
 @babel.localeselector
-def get_locale() -> str | Locale:
+def get_locale() -> str:
     """get_locale() method"""
     locale = request.args.get('locale')
     if locale and locale in SUPPORTED_LOCALES:
-        return Locale(locale)
+        return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
