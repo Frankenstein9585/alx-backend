@@ -32,7 +32,7 @@ SUPPORTED_LOCALES = ['en', 'fr']
 
 
 @babel.localeselector
-def get_locale() -> str:
+def get_locale():
     """get_locale() method"""
     locale = request.args.get('locale')
     if locale and locale in app.config['LANGUAGES']:
