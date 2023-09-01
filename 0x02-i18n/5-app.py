@@ -30,13 +30,24 @@ users = {
 }
 
 
+# @babel.localeselector
+# def get_locale() -> str:
+#     """get_locale() method"""
+#     locale = request.args.get('locale')
+#     if locale and locale in SUPPORTED_LOCALES:
+#         return locale
+#     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 @babel.localeselector
 def get_locale() -> str:
-    """get_locale() method"""
-    locale = request.args.get('locale')
-    if locale and locale in SUPPORTED_LOCALES:
-        return locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    """this method checks the URL parameter for locale variable
+    and force the Locale of the app"""
+    if request.args.get('locale'):
+        lang = request.args.get('locale')
+        if lang in app.config['LANGUAGES']:
+            return lang
+    else:
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 def get_user() -> Dict | None:
