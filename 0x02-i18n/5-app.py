@@ -6,6 +6,14 @@ from babel import Locale
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
+
+users = {
+    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+}
+
 app = Flask(__name__)
 
 babel = Babel(app)
@@ -21,13 +29,6 @@ class Config(object):
 app.config.from_object(Config)
 
 SUPPORTED_LOCALES = ['en', 'fr']
-
-users = {
-    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
-    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
-    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
-}
 
 
 @babel.localeselector
